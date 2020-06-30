@@ -9,33 +9,61 @@
 
 # Exercise 3
 # Execute the operation sqrt(2*10 + 5), put the result in the variable x and print it to the screen.
+
+```{r}
 x<-sqrt(2*10 + 5)
 x
+
+```
+
 # ------------------------------------------------------------------------------------------------------
 
 # Exercise 4
 # Define a vector v1 = (1,2,3,4,5), v2 = (23,13,1,33,2). Calculate the vector . Execute the 
 
+
+```{r}
 v1 = c(1,2,3,4,5)
 v2 = c(23,13,1,33,2)
 v3 = v1 + v2
 
+```
+
+
 # log10 of each element of v3 and put the result in v4. Print the square of each element of v4 
+
+```{r}
 v4<-log10(v3)
 sqrt(v4)
+
+```
+
 # ------------------------------------------------------------------------------------------------------
 
 # Exercise 5
 # Print the sum of the squares of the first ten numbers using sequences. 
+
+```{r}
 v<-seq(1,10)
 
+```
+
 # Hint: the function sum(v) calculate the sum of the elements of the vector v.
+```{r}
 sum(v*v)
+
+```
+
 # ------------------------------------------------------------------------------------------------------
 
 # Exercise 6
 # Print the sum of the first ten even numbers.
+
+```{r}
 sum(1:10)
+
+```
+
 # ------------------------------------------------------------------------------------------------------
 
 # Exercise 7
@@ -50,29 +78,48 @@ sum(1:10)
 # Define the following vector: v <- c(NA, NA, NA, NA, 1:100). Create a vector v2 from v with elements greater than 50
 #but lower than 80. Exclude NA values.
 
+
+```{r}
 v <- c(NA, NA, NA, NA, 1:100)
 v2 <- v[v>50 & v<80 & !is.na(v)]
 v2
+
+```
+
 # ------------------------------------------------------------------------------------------------------
 
 # Exercise 9
-library(arith)
 # Define a vector v with elements from 1 to 20. Create a vector v2 with the odd elements of v.
+
+```{r}
 v<- 1:20
 v2<- v[(v%%2)==1]
 v2
+
+```
+
 # Assign to v2 a names vector with the letters of even position (from variable LETTERS). Print v2. 
+
+```{r}
 v2<-v2[-(seq(2,length(v2),by=2))]
 names(v2) <-letters[1:length(v2)]
 v2
+
+```
+
 # Use the negative indexing.
 
 # ------------------------------------------------------------------------------------------------------
 
 # Exercise 10
 # Build a factor of 25 elements (strings) formed by 3 different levels
+
+```{r}
 fc <- factor(rep(c("A","B","C"),c(10,10,5)))
 fc
+
+```
+
 # ------------------------------------------------------------------------------------------------------
 
 # Exercise 11
@@ -89,10 +136,20 @@ fc
 #   - a vector named bool with some boolean values
 
 
+
+```{r}
 l<-list(seq = 1:10 , letters = LETTERS[1:10], bool=c(TRUE,FALSE,TRUE,FALSE) )
+
+```
+
 # Print the length of l
-length(l)
+
+```{r}
+
+```
+
 # Print the elements of the vector "seq" using its name and its numerical index
+
 l$seq
 l[[1]]
 # Print the second element of vector letters
@@ -1128,10 +1185,564 @@ class(x)
 ```
 
 # Put the elements of x with odd position in y
+```{r}
+y<-x[seq(1,length(x),2)]
+
+```
 
 # Write the elements of y in a file "y_output.txt"
+
+```{r}
+writeLines(y,"y_output.txt")
+```
+
 # ------------------------------------------------------------------------------------------------------
+#Exercise 48
+#Create two numeric vectors x and y of length 3 and 5 respectively. 
+#What happens when you execute their product?
+
+```{r}
+x <- vecotr(length=3)
+
+y <- vecotr(length=5)
+x*y
+```
 
 
+#Exercise 49
+#(a) Check if the current file is present in your current directory.
+#(b) Then, choose another file from your current directory and get some informatin about it. 
+#Do point (b) it in a single command.
+
+#Exercise 50
+#Write down the R code required to produce the following:
+#(a) [1] 1 5 1 5 1 5 1 5 1 5 1 5 1 5 1 5 1 5 1 5 1 5 1 5 1 4 7 10 13 16 19
+#(b) [1] 2 4 6 2 4 6 1 1 1 3 3 5 5 5 5
+
+
+```{r}
+
+c(rep(c(1, 5),12),seq(1,19,3))
+
+c(rep(c(2,4,6),2),rep(1,3),rep(3,2),rep(5,4))
+```
+
+#Exercise 51
+#Calculate the sum of i^2 for i=3:177
+
+
+
+```{r}
+i<-3:177
+sum(i*i)
+
+```
+
+#Exercise 52
+#Use paste to obtain the following
+#[1] "Ab-Bc-Cd-De-Ef-Fg-Gh-Hi-Ij-Jk-Kl-Lm-Mn-No-Op-Pq-Qr-Rs-St-Tu-Uv-Vw-Wx-Xy-Yz-Za"
+#What is the difference between the parameters sep and collapse?
+
+
+```{r}
+
+paste(Letters,letters[-1],sep=",COLLAPSE = "-")
+
+```
+
+
+#Exercise 53
+#Sample 50 values from x<-rep(NA,300) and y<-1:300 and put the result in a vector z
+#Find the proportion of NAs in z in a single command.
+
+
+```{r}
+x<-rep(NA,300)
+y<-1:300
+s<-sample(c(x,y),50)
+z<-sum(s==NA)/length(s)
+
+
+
+```
+
+#Exercise 54
+#Consider the vector z of the previous exercise. Modify it such that it contains only values greater than -50 
+#but lower than 100(in a single command). NA values must be kept.
+#What should be added in order to remove NA values?
+```{r}
+z[z>-50 && z<100]
+
+z[z>-50 && z<100 && !is.na(z)]
+
+
+
+```
+
+
+#Exercise 55
+#Create a vector x with named elements. Obtain the first element using three different ways. 
+#Then modify x such that it does not contain the third element anymore. Do it by using names.
+
+
+
+```{r}
+x <- c("first"=3, "second"=0, "third"=9)
+x["first"]
+x[1]
+x[x=="first"]
+
+```
+
+
+
+#Exercise 56
+#Create a factor f containing the following levels: "BD Student" "MD Student". The repetitions should be 4 and 5 
+#respectively
+
+```{r}
+f<-factor(rep("BD Student",4),rep("MD Student",5))
+
+f2<-factor(f,"PhD Student")
+```
+
+
+
+.
+#Then add a new level "PhD Student" for which the repetitions are still 0.
+
+#Exercise 57
+#Create a list l composed by the two following lists: 
+l1<-list(name=c("Alberto","Antonio"),age=c(25,40),work=c("Student","Engineer"))
+l2<-list(surname=c("Rossi","Bianchi"),nation=c("Italy","Malta"))
+#(a)What happens if you use list to create l?
+#(b)What happens when you type l$n and why? What should you type in order to obtain the nation component?
+
+
+```{r}
+f<-factor(rep("BD Student",4),rep("MD Student",5))
+
+f2<-factor(f,"PhD Student")
+```
+
+
+
+#Exercise 58
+#Create a numeric matrix m 4x5.
+#(a) Bind to m a numeric 4x2 matrix called n. Do both cbind and rbind work? If no, why?
+#(b) Remove from the newly obtained m, the central column. Do this by exploiting the ncol function.
+#(c) Multiply the new m matrix by n to obtain the row by columns product. Is it possible in this case?
+#If not, how can we solve it?
+
+
+```{r}
+m<-matrix(nrow=4,ncol=5)
+
+n<-matrix(nrow=4,ncol=2)
+
+m<-cbind(m,n)
+
+m<-rbind(m,n)
+m<-m[,(ncol(m)+1)/2]
+```
+
+
+#Exercise 59
+#(a) Create a matrix m 5x5 containing letters by using the sample function such that an element can appear more than once.
+#Check the class of one of the elements of m.
+
+
+```{r}
+m<-matrix(sample(letters,25,replacement=TRUE),nrow=5,ncol=5)
+class(m[1,1])
+
+```
+
+#(b) Add a column of numbers. Check the class of one of the new elements of m. Is there something strange about it?
+
+```{r}
+
+m<-cbind(m,c(1,2,3,4))
+
+```
+
+
+#(c) Which data structure could you use instead of the matrix? Create an appropriate data structure n
+
+
+
+```{r}
+
+n<-data.frame(m)
+
+```
+
+
+#containing the same elements of m.
+#Then name your columns C1,...,C5 and your rows R1,...,R5 (do not use c())
+```{r}
+colnames(n)<-c("C1","C2","C3","C4","C5")
+rownames(n)<-c("R1","R2","R3","R4","R5")
+
+```
+
+
+
+#(d) Access to an element of n in 3 different ways. Does it remind you of another data s
+
+tructure?
+
+```{r}
+n[1,n$C1]
+n[1,1]
+n[1,"C1"]
+
+n["C1"]
+n$C1
+n[["Name"]]
+
+
+```
+
+#Exercise 60
+#Create a 3D array a 3x3x4 containing numbers from 1:18.
+```{r}
+
+v <- sample(1:18,size=3*3*4,replace=TRUE)
+dim(v) <- c(3,3,4)
+```
+
+
+#(a) Does recycling occur?
+#YES
+#(b) Select only the first row and all but the first column. Leave the third dimension intact. Do not subscribe a.
+```{r}
+
+v[1, ,]
+```
+
+
+
+#(c) Copy a to a2.What happens if you set dim(a2) to NULL?
+
+```{r}
+
+v[1, ,]
+```
+#(d) Transform a into a matrix.
+
+#Exercise 61
+#Analyze the trees dataset.
+
+#(a)Report its class,summary,structure,dimensions,size in bit,colnames and rownames.
+
+#(b) What does R return if you type length(trees)?
+#(c)Show the last 7 rows.
+#(d) What is the frequency of the different values of Height? Round your result.
+
+```{r}
+class(trees)
+summary(trees)
+str(trees)
+dim(trees)
+object.size(trees)
+colnames(trees)
+rownames(trees)
+length(trees)
+tail(trees,7)
+round(table(trees$Height))
+
+```
+
+
+
+#Exercise 62
+#Consider the following matrix 
+
+```{r}
+m<-matrix(sample(-20:20,50,replace=T),nrow=5)
+any(m==0)
+
+all(m>0)
+sum(m>15)
+```
+
+#(a) Check if it contains any 0.
+#(b) Check if it contains all positive integers
+
+#(c) Which elements are greater than 15? How many are them?
+
+#Exercise 63
+#Replace each negative element of m with the corresponding positive one. Replace positive elements
+#with their cube.Use control structures.
+
+```{r}
+
+m[m<0] <--1*m[m<0]
+m[m>0] <-m[m>0]*m[m>0]*m[m>0]
+
+```
+
+
+
+#Exercise 64
+#Build a cycle where each time you sample a new integer between -20 and 30.
+#Whenever you encounter an even number (not 0), print the square of the sum of all even numbers sampled until
+#that moment.
+#When 0 is sampled, exit from the cycle.
+
+```{r}
+
+s <-sample(-20:30,size=1)
+c <-0
+while(s!=0){
+	if(s%%2==0){
+c=c+s
+
+	}
+s <-sample(-20:30,size=1)
+}
+print(c)
+```
+
+
+
+
+
+#Exercise 65
+#Define a function f that given a numeric vector, returns its maximum, minimum, median and mean value.
+#Put these values in a vector, and return NULL if the input is not numeric. Test the function.
+
+```{r}
+
+
+summry <- function(v){
+if(class(v)=="numeric"){
+d <- vector(length=4)
+d[1] <- max(v)
+d[2] <- min(v)
+d[3] <- median(v)
+d[4] <- mean(v)
+
+return (d)
+}else{
+
+return (NULL)
+}
+
+
+}
+```
+
+
+
+
+
+#Exercise 66
+#Define a function euclidean_dist that given a matrix return the euclidean distance between its rows Do not use
+
+```{r}
+euclidean_dist <- function(m){
+m1 <- matrix(nrow=nrow(m)-1,ncol=1)
+for(i in 1:nrow(m)-1 ){
+t<-m[i,]-m[i+1,]
+m1[i]<- sqrt(sum(t*t))
+
+}
+return(m1)
+}
+```
+#the dist function. Test the function(compare it with dist).
+
+#Exercise 67
+#Define a function fact that given a number returns its factorial. Try not to use for loops
+```{r}
+fact<-function(n){
+if(n<=2){
+
+return n
+}
+else{
+
+return (n * fact(n-1))
+}
+
+}
+```
+#Exercise 68
+#Define a function that given a character vector, returns the frequency of the characters.
+#HINT: Use the function strsplit to split the string.
+#Test it with the following: AAAACCGGTCGACGGGACGG
+```{r}
+fcharc <- function(v){
+
+return (table(v))
+}
+
+
+```
+
+#Exercise 69
+#Define a function with a variable number of input numeric arguments (minimum two) that does the following:
+#(((a+b)*c)+d)*e and so on. Example: if the input is 4,5,6,7 what we want is ((4+5)*6)+7=61
+#Test it using also length 1 vectors.
+```{r}
+
+fcal <- function(...){
+
+args<- list(...)
+
+f <- args[[1]]
+for(i in 2:length(args)){
+if( i %% 2 == 0){
+f <- f + args[[i]] 
+
+}else{
+
+f <- f*args[[i]]
+}
+}
+return (f)
+}
+```
+
+#Exercise 70
+#Consider the dataset esoph, which contains data from a case-control study of esophageal cancer in France.
+#Analyze the dataset (how many features, how many samples, the size of the dataset).
+#Provide a summary of it.
+#Then
+#(a) See how many people are there per each age group
+#(b) Find the classes of each feature
+#(c) Compute how many controls are in each age group 
+#(d) Find how many unique vals exist per each feature. Do it in a single command
+```{r}
+ncol(esoph)
+nrow(esoph)
+object.size(esoph)
+summary(esoph)
+table(esoph$agegp)
+
+class(esoph$agegp)
+
+class(esoph$alcgp)
+
+class(esoph$tobgp)
+
+class(esoph$ncases)
+
+
+class(esoph$ncontrols)
+
+```
+#Exercise 71
+#What is the difference between using vapply, sapply and lapply?
+#When do sapply and lapply return the result in the same format?
+"no"
+```{r}
+```
+#Exercise 72
+#Consider the dataset state.x77, which contains statistics about the US. Consider also state.region,
+#which indicates the location of each state.
+#(a) Find the population for those states with an area greater than 100000 square miles(Single command).
+
+
+#(b) Compute the mean of life Expectancy for each region(Northeast,South,North,Central,West)
+
+```{r}
+
+state.x77[state.x77[,"Area"]>100000,]
+
+
+```
+#Exercise 73
+#Make sure that that salary.txt is in your working directory.
+#(a)Then execute the command below. What can you say about the first row of your file? How would you solve it?
+
+
+```{r}
+
+sal<-read.table("salary.txt")
+#(b) Select only those rows for which the degree is "doctorate" and put them into a new file called "doc_salary.txt".
+
+#Remove the dg column. When writing the data to your file, specify new column names(sex,rank,year,year_since_deg,salary). 
+#Use write.table.
+
+sl<-sal[sal$V4=="doctorate",]
+sl <-sl[-5]
+colnames(sl) <-c("sex","rank","year","year_since_deg","salary")
+
+write.table(sl,"doc_salary.txt")
+
+#(c)Consider your doc_salary.txt file. Skip the first 5 lines and read only the first 10 among the remaining 
+#ones. Use read.csv.
+
+sl
+sl[5:16,]
+
+```
+#Exercise 74
+#Use the command sample to generate a vector x of 20 random numbers between 1 and 20. Do it using the fewest number
+#of parameters.
+
+#What can you say about the frequency of the numbers in x?
+#Now create a vector y of 20 random numbers between 1 and 20 but with the parameter replace to TRUE.
+#What is the difference between y and x?
+```{r}
+x<-sample(1:20,20)
+table(x)
+
+
+y<-sample(1:20,20,replace = TRUE)
+table(y)
+```
+#Exercise 75
+#Generate using two different R functions, 100 random and independent events which result can be either success
+#or failure, knowing that in 85% of cases you will fail. Encode,if needed, 0 as failure and 1 as success.
+#Then verify the proportion of successes and compare it with the expected probability. Is it different?
+
+
+```{r}
+s<-sample(c(0,1),100,replace =TRUE)
+
+sum(s==0)/length(s)
+```
+#Exercise 76
+#(a)Generate a vector x of 100 random numbers extracted from a normal distribution with 0 mean and 1 sd.
+
+
+#Using the function hist() plot the vector. Give a name to your plot.
+
+hist(x)
+#(b) Using the same command, generate a vector y of 1000 numbers, but with mean 10 and 30 sd.
+#Plot the histogram and compare it with the one you've obtained before.
+#(c) Compute the mean, standard deviation and variance of y and compare them with the theoretical values
+#(look at the parameters of your command). Are they completely equal?
+```{r}
+x<-rnorm(100)
+
+hist(x)
+y<-rnorm(1000,mean=10,sd=30)
+
+hist(y)
+
+mean(y)
+sd(y)
+var(y)
+
+```
+#Exercise 77
+#Find the number of hours that are missing from December 25,2017. Use opportune data formats. 
+#Find the weekday of December 25,2017 as well.
+
+#Exercise 78
+#Consider the setosa objects of the iris dataset.
+ir<-iris[iris$Species=="setosa",]
+#Make a plot with the sepal.width on the x axis, and the sepal.length on the y axis. 
+plot(ir$Sepal.length,ir$Sepal.width,color="green")
+#Color your points dark green, and change their shape to crosses (hint:use the help)
+#Assign a title to your plot and your axis.
+
+```{r}
+```
 
 
